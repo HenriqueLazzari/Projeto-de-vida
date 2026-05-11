@@ -1,11 +1,17 @@
 const botoes = document.querySelectorAll(".botao");
+const abas = document.querySelectorAll(".aba-conteudo");
 
-for(let i=0;i <botoes.length;i++){
-    botoes[i].onclick = function(){
-        
-        for(let j=0;j<botoes.length;j++){
-            botoes[j].classList.remove("ativo");
-        }
-        botoes[i].classList.add("ativo");
-    }
-}
+botoes.forEach((botao, index) => {
+  botao.addEventListener("click", () => {
+    botoes.forEach((item) => {
+      item.classList.remove("ativo");
+      item.setAttribute("aria-selected", "false");
+    });
+
+    abas.forEach((aba) => aba.classList.remove("ativo"));
+
+    botao.classList.add("ativo");
+    botao.setAttribute("aria-selected", "true");
+    abas[index].classList.add("ativo");
+  });
+});
